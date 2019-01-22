@@ -8,9 +8,12 @@ const bodyParser= require('body-parser');
 const mongoose = require('mongoose');
 
 const multer = require('multer');
- var upload = multer();
+const upload = multer();
 
-mongoose.connect('mongodb://test-sat-21jan:sat-21jan@ds163164.mlab.com:63164/test-sat-21jan');
+const env = process.env.NODE_ENV || 'development';
+const config = require('./config')[env];
+
+mongoose.connect(config.dbConnection);
 
 app.use(bodyParser.urlencoded({
     extended:false
