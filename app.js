@@ -6,7 +6,7 @@ const productRoute = require('./api/routes/products');
 const categoryRoute = require('./api/routes/category');
 const bodyParser= require('body-parser');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 const multer = require('multer');
 const upload = multer();
 
@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 app.use(upload.array()); 
+app.use(cors())
 
 app.use('/product',productRoute);
 app.use('/category',categoryRoute);
